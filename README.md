@@ -1,3 +1,61 @@
+# [Unofficial] Mongoose 6.2.10 fork:
+
+**Note**: Soon to be deprecated: `hasNext` and `next` official methods are currently pending to be merged on [branch 6.3](https://github.com/Automattic/mongoose/tree/6.3). This is just a quick patch
+
+<br/>
+<br/>
+<br/>
+
+
+## `hasNext` and `next` methods on `mongoose.watch` cursor
+
+<br/>
+<br/>
+<br/>
+
+This fork implements `hasNext` and `next` methods to `mongoose.watch` stream cursor for `updateMany` bulk operations without altering the module
+
+### How to use it:
+
+```javascript
+    // Classic mongoose Model decalaration
+    const myCollectionSchema = mongoose.Schema({ /* mySchema */ });
+    const myMongooseModel = mongoose.model('myCollection', myCollectionSchema);
+
+    // Classic watch stream
+    const stream = myMongooseModel.watch([], /* options */);
+    let operationsArray = [];
+    steam.on('change', (data) => {
+        operationsArray.push(data);
+
+        // Use `hasNext` to check further actions
+        if (data.hasNext()) {
+            // Data is still pending to update
+            // const nextDocumentPendingToUpdate = data.next(); // Get NON-update next document
+            // console.log(nextDocumentPendingToUpdate); // Display document pending to update
+        } else {
+            // Bulk operations ended, do something
+            doSomethingWithBulkData(operationsArray);
+            operationsArray = [];
+        }
+    });
+```
+
+**Disclamer** : This is an unoficial github repo, you should user the official [Mongoose 6.3](https://github.com/Automattic/mongoose/tree/6.3) as soon as the the branch is merged into master.
+
+<br/>
+<br/>
+
+## The following text is provided by the official mongoose 6.0 github repo
+
+<br/>
+<br/>
+
+____
+
+
+
+
 # Mongoose
 
 Mongoose is a [MongoDB](https://www.mongodb.org/) object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
