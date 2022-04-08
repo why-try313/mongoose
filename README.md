@@ -41,7 +41,7 @@ This fork implements `hasNext` and `next` methods to `mongoose.watch` stream cur
     });
 ```
 
-**Disclamer** : This is an unoficial github repo, you should user the official [Mongoose 6.3](https://github.com/Automattic/mongoose/tree/6.3) as soon as the the branch is merged into master.
+**Disclamer** : This is an unoficial github repo, you should use the official [Mongoose 6.3](https://github.com/Automattic/mongoose/tree/6.3) as soon as the the branch is merged into master.
 
 <br/>
 <br/>
